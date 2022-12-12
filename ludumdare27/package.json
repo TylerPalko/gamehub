@@ -1,0 +1,48 @@
+{
+  "name": "ludum-dare-27",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": "Hugh Kennedy <hughskennedy@gmail.com> (http://hughskennedy.com/)",
+  "license": "MIT",
+  "private": true,
+  "description": "ERROR: No README.md file found!",
+  "scripts": {
+    "start": "node server.js",
+    "bundle": "browserify index.js | uglifyjs -c > bundle.js",
+    "test": "say sorry"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hughsk/ludum-dare-27.git"
+  },
+  "devDependencies": {
+    "beefy": "~0.4.1",
+    "browserify": "~2.28.0",
+    "uglify-js": "~2.4.0",
+    "watchify": "~0.1.0",
+    "ecstatic": "~0.4.7"
+  },
+  "dependencies": {
+    "image-loaded": "0.0.2",
+    "jsynth": "~3.0.0",
+    "vectors": "~0.1.0",
+    "pointer-trap": "0.0.0",
+    "kb-controls": "0.0.2",
+    "ticker": "0.0.1",
+    "bindlestiff": "0.0.0",
+    "tune": "~0.2.0",
+    "inherits": "~2.0.1",
+    "box2dweb-commonjs": "~2.1.0",
+    "zeros": "0.0.0",
+    "ndarray-continuous": "~0.4.1",
+    "cave-automata-2d": "~0.3.1",
+    "continuous-box2d": "0.0.0",
+    "continuous-observer": "~0.1.1",
+    "box2d-player": "~0.1.0",
+    "fps": "0.0.3",
+    "raf": "0.0.3",
+    "perlin": "~1.0.0",
+    "ndarray-fill": "~0.1.0",
+    "box2d-events": "0.0.1"
+  }
+}
