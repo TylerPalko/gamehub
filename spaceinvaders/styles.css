@@ -1,0 +1,9 @@
+body {
+  background-color: dimgray;
+  text-align: center;
+}
+
+canvas {
+  background-color: black;
+  border: 1px solid black;
+}

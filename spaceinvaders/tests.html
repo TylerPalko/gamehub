@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>HTML5 Space Invaders Tests</title>
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.4.0.css">
+</head>
+
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <canvas id="game-canvas" width="672" height="768">
+    Your browser does not support HTML5 canvas.
+  </canvas>
+  <script src="https://code.jquery.com/qunit/qunit-2.4.0.js"></script>
+  <script src="game.js"></script>
+  <script>
+    QUnit.assert.isUndefined = function (value, message) {
+      var result = (value === undefined);
+      this.pushResult({
+        result: result,
+        actual: value,
+        expected: undefined,
+        message: message
+      });
+    };
+    QUnit.assert.isFalse = function (value, message) {
+      this.pushResult({
+        result: (value === false),
+        actual: value,
+        expected: false,
+        message: message
+      });
+    };
+    QUnit.assert.isTrue = function (value, message) {
+      this.pushResult({
+        result: (value === true),
+        actual: value,
+        expected: true,
+        message: message
+      });
+    };
+    // ========================================================================
+    QUnit.module("Space Invaders tests", function (hooks) {
+      hooks.beforeEach(function () {
+        this.game = new SpaceInvaders.Game();
+      });
+
+      QUnit.test("Check game state without calling init.", function (a) {
+        a.isFalse(this.game.isInitialized(), "Init state must be false.");
+        a.isUndefined(this.game.getScene(), "The scene must be undefined.");
+      });
+
+      QUnit.test("Check the behavior when canvas is missing.", function (a) {
+        // change the identifier of the target canvas temporarily.
+        var canvas = document.getElementById("game-canvas");
+        canvas.setAttribute("id", "foo-canvas");
+
+        // check that things actually fail.
+        a.isFalse(this.game.init(), "Initialization fails.");
+        var initState = this.game.isInitialized();
+        a.isFalse(initState, "Init-state should remain false.");
+        a.isUndefined(this.game.getScene(), "The scene must be undefined.");
+
+        // restore the original identifier back for the canvas.
+        canvas.setAttribute("id", "game-canvas");
+      });
+
+      QUnit.test("Recognization of missing 2D context.", function (a) {
+        // disable the context retrieval functionality temporarily.
+        var canvas = document.getElementById("game-canvas");
+        var originalGetContext = canvas.getContext;
+        canvas.getContext = function (value) { return null; }
+
+        // check that things actually fail.
+        a.isFalse(this.game.init(), "Initialization fails.");
+        var initState = this.game.isInitialized();
+        a.isFalse(initState, "Init-state should remain false.");
+        a.isUndefined(this.game.getScene(), "The scene must be undefined.");
+
+        // restore (re-enable) the context retrieval functionality.
+        canvas.getContext = originalGetContext;
+      });
+
+      QUnit.module("Initialized Space Invaders tests", function (hooks) {
+        hooks.beforeEach(function () {
+          this.game.init();
+        });
+
+        QUnit.test("Check game state after calling init.", function (a) {
+          a.isTrue(this.game.isInitialized(), "Init state must be true.");
+          a.isTrue((this.game.getScene() instanceof SpaceInvaders.Scene), "Scene must be assigned.");
+          a.deepEqual(this.game.getPlayerCount(), 2, "Default player count must be assigned.");
+        });
+
+        QUnit.test("Check that reinitialization attempts fail.", function (a) {
+          a.isFalse(this.game.init(), "Re-initialization must return false.");
+          a.isTrue(this.game.isInitialized(), "Init state must stay true.");
+          a.isTrue((this.game.getScene() instanceof SpaceInvaders.Scene), "Scene must stay assigned.");
+        })
+
+        QUnit.test("Check that base entity works as expected.", function (a) {
+          var e = new SpaceInvaders.Entity(this.game);
+
+          // check that injected and default values get assigned correctly.
+          a.deepEqual(e.game, this.game, "Game instance must be injected.");
+          a.isTrue((e.scene instanceof SpaceInvaders.Scene), "Scene must be injected.");
+          a.deepEqual(e.getX(), e.DEFAULT_X, "Initial X-coordinate must be set to default.");
+          a.deepEqual(e.getY(), e.DEFAULT_Y, "Initial Y-coordinate must be set to default.");
+
+          // check that setters works as expected.
+          e.setX(313);
+          e.setY(131);
+          a.deepEqual(e.getX(), 313, "X-coordinate setter must set x-value.");
+          a.deepEqual(e.getY(), 131, "Y-coordinate setter must set y-value.");
+        });
+
+        QUnit.test("Check that text entity construction works correctly.", function (a) {
+          var e = new SpaceInvaders.TextEntity(this.game);
+
+          // check that default values get assigned correctly.
+          a.deepEqual(e.getText(), e.DEFAULT_TEXT, "Default text must be set.");
+          a.deepEqual(e.getFillStyle(), e.DEFAULT_FILL_STYLE, "Default fill style must be set.")
+          a.deepEqual(e.getFont(), e.DEFAULT_FONT, "Default font must be set.");
+          a.deepEqual(e.getAlign(), e.DEFAULT_ALIGN, "Default alignment must be set.");
+          a.deepEqual(e.isVisible(), e.DEFAULT_VISIBLE, "Default visible must be set.");
+          a.deepEqual(e.getBlinkCount(), e.DEFAULT_BLINK_COUNT, "Default blink count must be set.");
+          a.deepEqual(e.getBlinkFrequency(), e.DEFAULT_BLINK_FREQUENCY, "Default blink frequency must be set.");
+
+          // set (i.e. change) all available definitions.
+          e.setText("foo");
+          e.setFillStyle("bar");
+          e.setFont("foobar");
+          e.setAlign("foo-bar");
+          e.setVisible(!e.DEFAULT_VISIBLE);
+          e.setBlinkCount(e.DEFAULT_BLINK_COUNT + 1);
+          e.setBlinkFrequency(e.DEFAULT_BLINK_FREQUENCY + 1);
+
+          // check that setters work as expected.
+          a.deepEqual(e.getText(), "foo", "Text setter must work.");
+          a.deepEqual(e.getFillStyle(), "bar", "Fill style setter must work.")
+          a.deepEqual(e.getFont(), "foobar", "Font setter must work.");
+          a.deepEqual(e.getAlign(), "foo-bar", "Align setter must work.");
+          a.deepEqual(e.isVisible(), !e.DEFAULT_VISIBLE, "Visibility setter must work.");
+          a.deepEqual(e.getBlinkCount(), e.DEFAULT_BLINK_COUNT + 1, "Blink count setter must work.");
+          a.deepEqual(e.getBlinkFrequency(), e.DEFAULT_BLINK_FREQUENCY + 1, "Blink frequency setter must work.");
+        });
+
+        QUnit.test("Check that text entity visiblity works correctly.", function (a) {
+          var e = new SpaceInvaders.TextEntity(this.game);
+          a.expect(1);
+
+          // construct a testing context object to calculate the amount of render calls.
+          var ctx = { fillText: function (x, y, z) { a.step("The fillText is called."); } }
+
+          // first check that a visible text entity will be rendered.
+          e.setVisible(true);
+          e.render(ctx);
+
+          // then check that the invisible text entity will not be rendered.
+          e.setVisible(false);
+          e.render(ctx);
+        });
+
+        QUnit.test("Check that text entity blinking works correctly.", function (a) {
+          var e = new SpaceInvaders.TextEntity(this.game);
+          a.expect((e.DEFAULT_BLINK_COUNT * e.DEFAULT_BLINK_FREQUENCY) + e.DEFAULT_BLINK_FREQUENCY);
+
+          // construct a testing context object to calculate the amount of render calls.
+          var ctx = { fillText: function (x, y, z) { a.step("The fillText is called."); } }
+
+          // check that initially invisible object is not getting blinked (asserts: 0)
+          e.setVisible(false);
+          e.blink();
+          e.update(0);
+          e.render(ctx);
+
+          // check that blinking is performed the correct amount of times if visible.
+          e.setVisible(true);
+          e.blink();
+          for (i = 0; i < e.DEFAULT_BLINK_COUNT * e.DEFAULT_BLINK_FREQUENCY; i++) {
+            e.update(0);
+            e.render(ctx);
+          }
+
+          // check that recalling the blink during blinks will reset blinking state.
+          e.blink();
+          for (i = 0; i < e.DEFAULT_BLINK_FREQUENCY; i++) {
+            e.update(0);
+            e.render(ctx);
+          }
+          e.blink();
+          for (i = 0; i < e.DEFAULT_BLINK_COUNT * e.DEFAULT_BLINK_FREQUENCY; i++) {
+            e.update(0);
+            e.render(ctx);
+          }
+          e.update(0);
+          e.render(ctx);
+        });
+
+        QUnit.test("Check that sprite entity construction works corretly.", function (a) {
+          var e = new SpaceInvaders.SpriteEntity(this.game);
+
+          // check that default value get assigned correctly.
+          a.deepEqual(e.getWidth(), e.DEFAULT_WIDTH, "Default width must be set.");
+          a.deepEqual(e.getHeight(), e.DEFAULT_HEIGHT, "Default height must be set.");
+          a.deepEqual(e.getClipX(), e.DEFAULT_CLIP_X, "Default x-axis clip must be set.");
+          a.deepEqual(e.getClipY(), e.DEFAULT_CLIP_Y, "Default y-axis clip must be set.");
+          a.deepEqual(e.getImage(), e.DEFAULT_IMAGE, "Default image definition must be set.");
+          a.deepEqual(e.isVisible(), e.DEFAULT_VISIBLE, "Default visibility must be set.");
+
+          // set (i.e. change) all available definitions.
+          var img = new Image();
+          e.setWidth(100);
+          e.setHeight(200);
+          e.setClipX(3);
+          e.setClipY(4);
+          e.setImage(img);
+          e.setVisible(!e.DEFAULT_VISIBLE);
+
+          // check that setters work as expected.
+          a.deepEqual(e.getWidth(), 100, "Width setter must work.");
+          a.deepEqual(e.getHeight(), 200, "Height setter must work.");
+          a.deepEqual(e.getClipX(), 3, "X-axis clip setter must work.");
+          a.deepEqual(e.getClipY(), 4, "Y-axis clip setter must work.");
+          a.deepEqual(e.getImage(), img, "Image setter must work.");
+          a.deepEqual(e.getExtentX(), 50, "X-axis extent must be automatically updated.");
+          a.deepEqual(e.getExtentY(), 100, "Y-axis extent must be automatically updated.");
+          a.deepEqual(e.isVisible(), !e.DEFAULT_VISIBLE, "Visibility setter must work.");
+        });
+
+        QUnit.test("Check that state changing works correctly.", function (a) {
+          a.expect(8);
+          var scene = this.game.getScene();
+
+          var state1 = {
+            enter: function () {
+              a.step("1. state enter is called.");
+            },
+            exit: function () {
+              a.step("1. state exit is called.")
+            }
+          };
+
+          var state2 = {
+            enter: function () {
+              a.step("2. state enter is called.");
+            },
+            exit: function () {
+              a.step("2. state exit is called.")
+            }
+          };
+
+          // assign the state as the active state.
+          scene.setState(state1);
+          a.deepEqual(scene.getState(), state1, "1. state must be assigned.");
+
+          // assign the another state as the active state.
+          scene.setState(state2);
+          a.deepEqual(scene.getState(), state2, "2. state must be assigned.");
+
+          // assign the first state back again.
+          scene.setState(state1);
+          a.deepEqual(scene.getState(), state1, "1. state must be assigned.");
+        });
+
+        QUnit.test("Check that collideable entity construction works.", function (a) {
+          var e = new SpaceInvaders.CollideableEntity(this.game);
+          a.deepEqual(e.getX(), e.DEFAULT_X, "X-axis position must be set.");
+          a.deepEqual(e.getY(), e.DEFAULT_Y, "Y-axis position must be set.");
+          a.deepEqual(e.getExtentX(), e.DEFAULT_EXTENT_X, "X-axis extent must be set.");
+          a.deepEqual(e.getExtentY(), e.DEFAULT_EXTENT_Y, "Y-axis extent must be set.");
+          a.deepEqual(e.isEnabled(), e.DEFAULT_ENABLED, "Enabled state must be set.");
+        });
+
+        QUnit.test("Check that collideable entity setters work.", function (a) {
+          var e = new SpaceInvaders.CollideableEntity(this.game);
+
+          e.setX(100);
+          e.setY(200);
+          e.setExtentX(25);
+          e.setExtentY(50);
+          a.deepEqual(e.getX(), 100, "X-axis position must be set.");
+          a.deepEqual(e.getY(), 200, "Y-axis position must be set.");
+          a.deepEqual(e.getCenterX(), 125, "X-center must be set.");
+          a.deepEqual(e.getCenterY(), 250, "Y-center must be set.");
+
+          e.setX(200);
+          e.setY(300);
+          a.deepEqual(e.getX(), 200, "X-axis position must be set.");
+          a.deepEqual(e.getY(), 300, "Y-axis position must be set.");
+          a.deepEqual(e.getCenterX(), 225, "X-center must be set.");
+          a.deepEqual(e.getCenterY(), 350, "Y-center must be set.");
+        });
+
+        QUnit.test("Check that movable sprite entity construction works.", function (a) {
+          var e = new SpaceInvaders.MovableSpriteEntity(this.game);
+          a.deepEqual(e.getX(), e.DEFAULT_X, "X-axis position must be set.");
+          a.deepEqual(e.getY(), e.DEFAULT_Y, "Y-axis position must be set.");
+          a.deepEqual(e.getExtentX(), e.DEFAULT_EXTENT_X, "X-axis extent must be set.");
+          a.deepEqual(e.getExtentY(), e.DEFAULT_EXTENT_Y, "Y-axis extent must be set.");
+          a.deepEqual(e.isEnabled(), e.DEFAULT_ENABLED, "Enabled state must be set.");
+        });
+
+        QUnit.test("Check that movable entity setters work.", function (a) {
+          var e = new SpaceInvaders.MovableSpriteEntity(this.game);
+
+          e.setVelocity(313);
+          e.setDirectionX(1);
+          e.setDirectionY(2);
+          e.setStepSize(10);
+
+          a.deepEqual(e.getVelocity(), 313, "Velocity must be set.");
+          a.deepEqual(e.getDirectionX(), 1, "X-axis direction must be set.");
+          a.deepEqual(e.getDirectionY(), 2, "Y-axis direction must be set.");
+          a.deepEqual(e.getStepSize(), 10, "Stepsize must be set.");
+        });
+
+        QUnit.test("Check that movable entity can steplessly move the entity.", function (a) {
+          var e = new SpaceInvaders.MovableSpriteEntity(this.game);
+          e.setX(100);
+          e.setY(200);
+          a.deepEqual(e.getX(), 100, "X-axis position must be set.");
+          a.deepEqual(e.getY(), 200, "Y-axis position must be set.");
+
+          // apply some velocity and movement direction.
+          e.setDirectionX(-1);
+          e.setDirectionY(1);
+          e.setVelocity(2);
+
+          // check that the update function is capable to move the entity.
+          e.update(10);
+          a.deepEqual(e.getX(), 100 + (-1 * 2 * 10), "Entity must be now moved in the x-axis.");
+          a.deepEqual(e.getY(), 200 + (2 * 10), "Entity must be now moved in the y-axis.");
+
+          // check that the update function does move the entity when called again.
+          var oldX = e.getX();
+          var oldY = e.getY();
+          e.update(5);
+          a.deepEqual(e.getX(), oldX + (-1 * 2 * 5), "Entity must be now moved in the x-axis.");
+          a.deepEqual(e.getY(), oldY + (2 * 5), "Entity must be now moved in the y-axis.");
+        });
+
+        QUnit.test("Check that movable entity automatic disappearing works.", function (a) {
+          var e = new SpaceInvaders.MovableSpriteEntity(this.game);
+          a.isTrue(e.isVisible(), "Movable sprite must be initially visible.");
+          a.isTrue(e.isEnabled(), "Movable sprite must be initially enabled.");
+
+          // define entity to disappear after 3 updates.
+          e.setDisappearCountdown(3);
+
+          // check what happens after the first update.
+          e.update();
+          a.isTrue(e.isVisible(), "Movable sprite must still be visible.");
+          a.isTrue(e.isEnabled(), "Movable sprite must still be enabled.");
+
+          // check what happens after the second update.
+          e.update();
+          a.isTrue(e.isVisible(), "Movable sprite must still be visible.");
+          a.isTrue(e.isEnabled(), "Movable sprite must still be enabled.");
+
+          // check what happens after the third update.
+          e.update();
+          a.isFalse(e.isVisible(), "Movable sprite must be hidden.");
+          a.isFalse(e.isEnabled(), "Movable sprite must be disabled.");
+
+          // check what happens after the fourth update.
+          e.update();
+          a.isFalse(e.isVisible(), "Movable sprite stay hidden.");
+          a.isFalse(e.isEnabled(), "Movable sprite stay disabled.");
+        });
+
+        QUnit.test("Check that movable entity can move the entity in steps.", function (a) {
+          var e = new SpaceInvaders.MovableSpriteEntity(this.game);
+          e.setX(100);
+          e.setY(200);
+          a.deepEqual(e.getX(), 100, "X-axis position must be set.");
+          a.deepEqual(e.getY(), 200, "Y-axis position must be set.");
+
+          // apply some velocity, movement direction and a step size.
+          e.setDirectionX(-1);
+          e.setDirectionY(1);
+          e.setVelocity(2);
+          e.setStepSize(5);
+
+          // check that updates before the step do not move the entity.
+          e.update(10);
+          e.update(10);
+          e.update(10);
+          e.update(10);
+          a.deepEqual(e.getX(), 100, "X-axis position must not be moved yet.");
+          a.deepEqual(e.getY(), 200, "Y-axis position must not be moved yet.");
+
+          // check that the fifth update does actually move the entity.
+          e.update(10);
+          a.deepEqual(e.getX(), 100 + (-1 * 2 * 10), "Entity must be now moved in the x-axis.");
+          a.deepEqual(e.getY(), 200 + (2 * 10), "Entity must be now moved in the y-axis.");
+
+          // check that next five updates before the step do not move the entity.
+          var oldX = e.getX();
+          var oldY = e.getY();
+          e.update(10);
+          e.update(10);
+          e.update(10);
+          e.update(10);
+          a.deepEqual(e.getX(), oldX, "X-axis position must not be moved yet.");
+          a.deepEqual(e.getY(), oldY, "Y-axis position must not be moved yet.");
+
+          // check that fifth update does again move the entity.
+          e.update(5);
+          a.deepEqual(e.getX(), oldX + (-1 * 2 * 5), "Entity must be now moved in the x-axis.");
+          a.deepEqual(e.getY(), oldY + (2 * 5), "Entity must be now moved in the y-axis.");
+        });
+
+        QUnit.test("Check that animated movable sprite entity construction works.", function (a) {
+          var e = new SpaceInvaders.AnimatedMovableSpriteEntity(this.game);
+          a.deepEqual(e.getAnimationStepSize(), e.DEFAULT_ANIMATION_STEP_SIZE, "Step size must be set.");
+          a.deepEqual(e.getAnimationFrameIndex(), 0, "Frame index must be set.");
+        });
+
+        QUnit.test("Check that manual animating works.", function (a) {
+          var e = new SpaceInvaders.AnimatedMovableSpriteEntity(this.game);
+          e.setImage(new Image());
+          e.addAnimationFrame(1, 2, 3, 4);
+          e.addAnimationFrame(5, 6, 7, 8);
+          e.setAnimationFrameIndex(0);
+          e.setAnimationStepSize(0); // manual
+
+          // check that first frame definitions are assigned.
+          a.deepEqual(e.getClipX(), 1, "Sprite x-clip must be set.");
+          a.deepEqual(e.getClipY(), 2, "Sprite y-clip must be set.");
+          a.deepEqual(e.getWidth(), 3, "Sprite width must be set.");
+          a.deepEqual(e.getHeight(), 4, "Sprite height must be set.");
+
+          // make some animation updates.
+          for (i = 0; i < 100; i++) {
+            e.animate();
+          }
+
+          // check that first frame definitions still exists.
+          a.deepEqual(e.getClipX(), 1, "Sprite x-clip must be set.");
+          a.deepEqual(e.getClipY(), 2, "Sprite y-clip must be set.");
+          a.deepEqual(e.getWidth(), 3, "Sprite width must be set.");
+          a.deepEqual(e.getHeight(), 4, "Sprite height must be set.");
+
+          // change the animation frame index manually.
+          e.setAnimationFrameIndex(1);
+
+          // check that second frame definitions are assigned.
+          a.deepEqual(e.getClipX(), 5, "Sprite x-clip must be set.");
+          a.deepEqual(e.getClipY(), 6, "Sprite y-clip must be set.");
+          a.deepEqual(e.getWidth(), 7, "Sprite width must be set.");
+          a.deepEqual(e.getHeight(), 8, "Sprite height must be set.");
+        });
+
+        QUnit.test("Check that automatic animating works.", function (a) {
+          var e = new SpaceInvaders.AnimatedMovableSpriteEntity(this.game);
+          e.setImage(new Image());
+          e.addAnimationFrame(1, 2, 3, 4);
+          e.addAnimationFrame(5, 6, 7, 8);
+          e.setAnimationFrameIndex(0);
+          e.setAnimationStepSize(5); // automatic
+
+          // check that first frame definitions are assigned.
+          a.deepEqual(e.getAnimationFrameIndex(), 0, "Frame index must be 0.");
+          a.deepEqual(e.getClipX(), 1, "Sprite x-clip must be set.");
+          a.deepEqual(e.getClipY(), 2, "Sprite y-clip must be set.");
+          a.deepEqual(e.getWidth(), 3, "Sprite width must be set.");
+          a.deepEqual(e.getHeight(), 4, "Sprite height must be set.");
+
+          // make some animation updates.
+          for (i = 0; i < 4; i++) {
+            e.animate();
+            // check that first frame definitions still persist.
+            a.deepEqual(e.getAnimationFrameIndex(), 0, "Frame index must be 0.");
+            a.deepEqual(e.getClipX(), 1, "Sprite x-clip must be set.");
+            a.deepEqual(e.getClipY(), 2, "Sprite y-clip must be set.");
+            a.deepEqual(e.getWidth(), 3, "Sprite width must be set.");
+            a.deepEqual(e.getHeight(), 4, "Sprite height must be set.");
+          }
+
+          // perform fifth update and check that the frame is changed.
+          e.animate();
+          a.deepEqual(e.getAnimationFrameIndex(), 1, "Frame index must be changed.");
+          a.deepEqual(e.getClipX(), 5, "Sprite x-clip must be set.");
+          a.deepEqual(e.getClipY(), 6, "Sprite y-clip must be set.");
+          a.deepEqual(e.getWidth(), 7, "Sprite width must be set.");
+          a.deepEqual(e.getHeight(), 8, "Sprite height must be set.");
+
+          // make some animation updates until the frame should be changed again.
+          for (i = 0; i < 5; i++) {
+            e.animate();
+          }
+
+          // check that the first frame is changed back again.
+          a.deepEqual(e.getAnimationFrameIndex(), 0, "Frame index must be 0.");
+          a.deepEqual(e.getClipX(), 1, "Sprite x-clip must be set.");
+          a.deepEqual(e.getClipY(), 2, "Sprite y-clip must be set.");
+          a.deepEqual(e.getWidth(), 3, "Sprite width must be set.");
+          a.deepEqual(e.getHeight(), 4, "Sprite height must be set.");
+        });
+
+      });
+    });
+    // ========================================================================
+  </script>
+</body>
+
+</html>
