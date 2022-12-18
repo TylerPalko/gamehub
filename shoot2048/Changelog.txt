@@ -1,0 +1,10 @@
+BETA version 1.2 ---------------------------------------------------------------------
+	- Added Highscores
+	- Moved Scores to Align with Grid Properly
+	- Added Reset Button
+BETA version 1.1 ---------------------------------------------------------------------
+	- Colors Added for All Tiles
+	- Score Displayed as 5 Digits
+	- Grid Outline Color Change from Red to Grey
+BETA version 1.0.1 -------------------------------------------------------------------
+	- Coding Refinement
