@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Settings | Game Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/redirect.css" />
+    <link rel="stylesheet" href="css/tab.css" />
+    <link rel="stylesheet" href="css/switch.css" />
+    <link rel="icon" href="./resources/favicon.ico" />
+  </head>
+  <body>
+    <h1 id="title" class="text-center">Settings</h1>
+    <p class="text-center" id="message">
+      Here you can configure the site to your needs.
+    </p>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5756835229788588" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle" style="display: block;" data-ad-client="ca-pub-5756835229788588" data-ad-slot="6230603875" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <h2>Tab Cloaker</h2>
+    <div class="console-container">
+      <div class="console">
+        <div class="consolebody">
+          <p>Enter a new tab title or a image URL below. Whatever you set will be used all over the site.</p>
+          <p class="console-input">> <input id="userinput" type="url" pattern="https://.*" placeholder="Enter a title or image URL" autocomplete="on" autofocus /></p>
+          <p>Output: <span id="console-output"></span></p>
+        </div>
+      </div>
+      <div class="button-wrapper">
+        <button onclick="changeTabTitle();" class="console-button">Set Title</button>
+        <button onclick="changeTabIcon();" class="console-button">Set Icon</button>
+        <button onclick="resetTabSettings();" class="console-button">Uncloak</button>
+      </div>
+      <div class="examples">
+        <h4>Presets:</h4>
+        <p><b>Google Search: </b><button onclick="applyUrl('https://storage.googleapis.com/operating-anagram-8280/favicon-32x32.png', 'Math practice - Google Search');">Apply</button></p>
+        <p><b>Google Classroom: </b><button onclick="applyUrl('https://ssl.gstatic.com/classroom/favicon.png', 'Classes');">Apply</button></p>
+        <p><b>Google Docs: </b><button onclick="applyUrl('https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico', 'Class notes - Google Docs');">Apply</button></p>
+        <p><b>Google Drive: </b><button onclick="applyUrl('https://ssl.gstatic.com/images/branding/product/2x/hh_drive_36dp.png', 'My Drive - Google Drive');">Apply</button></p>
+        <p><b>Canvas: </b><button onclick="applyUrl('https://du11hjcvx0uqb.cloudfront.net/dist/images/favicon-e10d657a73.ico' , 'Dashboard');">Apply</button></p>
+        <p><b>Schoology: </b><button onclick="applyUrl('https://asset-cdn.schoology.com/sites/all/themes/schoology_theme/favicon.ico', 'Home | Schoology');">Apply</button></p>
+        <p><b>my NG connect: </b><button onclick="applyUrl('https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.myngconnect.com/login/chooseMainUI.spr&size=16', 'my NG connect');">Apply</button></p>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5756835229788588" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display: block;" data-ad-client="ca-pub-5756835229788588" data-ad-slot="6230603875" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </div>
+    <div class="switchcon">
+      <label class="switch">
+        <input id="ga" type="checkbox" checked disabled/>
+        <span onclick="tog2()" class="slider round"></span>
+      </label>
+    </div>
+    <p id="switchtxt">Google Analytics <span id="gapls" style="color: #eb4034;"></span></p>
+    <div class="switchcon">
+      <label class="switch">
+        <input id="not" type="checkbox" disabled/>
+        <span onclick="" class="slider round"></span>
+      </label>
+    </div>
+    <p id="switchtxt">New Game notifications <span style="color: #eb4034;">Due to issues, this has been disabled for now.</span></p>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5756835229788588" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle" style="display: block;" data-ad-client="ca-pub-5756835229788588" data-ad-slot="6230603875" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    <h2>Ad settings</h2>
+    <p>Turn off or on certain ads. <b>Please keep them on to support me!</b></p>
+    <div class="switchcon">
+      <label class="switch">
+        <input id="redadswitch" type="checkbox" checked disabled/>
+        <span onclick="tog1()" class="slider round"></span>
+      </label>
+    </div>
+    <p id="switchtxt">Redirect Ads <span id="redadpls" style="color: #eb4034;"></span></p>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5756835229788588" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle" style="display: block;" data-ad-client="ca-pub-5756835229788588" data-ad-slot="6230603875" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script src="/js/tab.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/switch.js"></script>
+  </body>
+</html>

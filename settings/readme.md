@@ -1,0 +1,1 @@
+This file was stolen from @3kh0 on Github https://github.com/3kh0/3kh0.github.io/blob/main/dump/settings.html
