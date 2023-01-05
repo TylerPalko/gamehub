@@ -1,59 +1,40 @@
-<!DOCTYPE HTML>
-<html lang="en">
-    <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KVNYG5VNX6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-KVNYG5VNX6');
-</script>
-        
-        <title>Clumsy Bird</title>
-        <link rel="apple-touch-icon-precomposed" href="data/img/touch-icon-iphone.png"/>
-        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="data/img/touch-icon-iphone-retina.png"/>
-        <link rel="shortcut icon" href="data/img/favicon.ico">
-        <link rel="stylesheet" type="text/css" media="screen" href="index.css">
-        <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="apple-mobile-web-app-title" content="Clumsy Bird">
-        <meta charset="UTF-8" />
-        <meta name="description" content="Clumsy Bird - A Flappy Bird clone using MelonJS"/>
-        <meta name="keywords" content="flappybird, flappy, bird, game, html5, melonjs,clone"/>
-        <meta name="robots" content="index, follow">
-        <meta name="google-site-verification" content="RDZI9SqVaffd48uHfZMv67-YdvviOMe2HuULEYqVgd4" />
-        <meta property="og:image" content="http://ellisonleao.github.io/clumsy-bird/data/img/bg.png" />
-        <meta property="og:title" content="Clumsy Bird - A Flappy Bird clone using MelonJS"/>
-        <meta property="og:url" content="http://ellisonleao.github.io/clumsy-bird/"/>
-        <meta property="og:site_name" content="Clumsy Bird - MelonJS"/>
-
-        <!-- Twitter Card -->
-        <meta name="twitter:hashtag" content="clumsybird" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@ellisonleao" />
-        <meta name="twitter:creator" content="@ellisonleao" />
-        <meta name="twitter:title" content="Clumsy Bird" />
-        <meta name="twitter:description" content="A Flappy Bird melonJS clone" />
-
-        <!-- Humans -->
-        <link rel="author" href="humans.txt" />
-    </head>
-
-    <body>
-        <!-- Canvas placeholder -->
-        <div id="screen"></div>
-
-        <!-- melonJS Library -->
-        <script type="text/javascript" src="js/melonJS-min.js" ></script>
-        <script type="text/javascript" src="build/clumsy-min.js" ></script>
-        <script type="text/javascript">
-            window.onReady(function onReady() {
-                game.onload();
-            });
-        </script>
-
-    </body>
+<!doctype html>
+<html>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover' />
+    <meta charset='utf-8'>
+    <link rel="stylesheet" type="text/css" href="https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/DLgXf1zr/styles.css">
+    <link rel="manifest" href="https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/DLgXf1zr/manifest.json">
+    <style></style>
+    <link name="viewport" rel="image/x-icon" href="favicon.jpg"> /*This is the only added part of code by me, the rest was stolen from: https://playcanv.as/p/2OlkUaxF*/
+    <title>Flappy Bird</title>
+    <script src="https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/DLgXf1zr/playcanvas-stable.min.js"></script>
+    <script>
+        ASSET_PREFIX = "https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/DLgXf1zr/";
+        SCRIPT_PREFIX = "https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/DLgXf1zr/";
+        SCENE_PATH = "404993.json";
+        CONTEXT_OPTIONS = {
+            'antialias': true,
+            'alpha': false,
+            'preserveDrawingBuffer': false,
+            'preferWebGl2': true,
+            'powerPreference': "default"
+        };
+        SCRIPTS = [ 37175323, 21399876, 4554207, 4554213, 4554214, 4554217, 4554270, 4554271, 4554273, 4554276, 4554279, 20754603, 20755574, 37175329, 37186400 ];
+        CONFIG_FILENAME = "https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/DLgXf1zr/config.json";
+        INPUT_SETTINGS = {
+            useKeyboard: true,
+            useMouse: true,
+            useGamepads: false,
+            useTouch: true
+        };
+        pc.script.legacy = false;
+        PRELOAD_MODULES = [
+        ];
+    </script>
+</head>
+<body>
+    <script src="https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/DLgXf1zr/__start__.js"></script>
+    <script src="https://s3-eu-west-1.amazonaws.com/apps.playcanvas.com/DLgXf1zr/__loading__.js"></script>
+</body>
 </html>
