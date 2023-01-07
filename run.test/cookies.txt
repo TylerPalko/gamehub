@@ -1,0 +1,6 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+www.coolmathgames.com	TRUE	/	FALSE	1999999999	cmg_country	us
+www.coolmathgames.com	TRUE	/	FALSE	1999999999	cmg_region	nc
+www.coolmathgames.com	TRUE	/	FALSE	1999999999	cmg_city	charlotte_nc
+
