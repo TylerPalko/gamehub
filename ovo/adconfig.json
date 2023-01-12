@@ -11,6 +11,6 @@
   "gameId": "1377b99c10284c229423118a941af3b1",
   "removeSocials": false,
   "stopAudioInBackground": false,
-  "removeMidrollRewarded": true,
+  "removeMidrollRewarded": false,
   "noReligion": false
 }
