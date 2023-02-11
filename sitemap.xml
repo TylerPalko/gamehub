@@ -9,82 +9,107 @@
 
 <url>
   <loc>https://tylerpalko.github.io/gamehub/</loc>
-  <lastmod>2023-02-01T22:24:19+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://tylerpalko.github.io/gamehub/1/</loc>
-  <lastmod>2023-02-01T22:24:19+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://tylerpalko.github.io/gamehub/1v1lol/</loc>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tylerpalko.github.io/gamehub/2048/</loc>
-  <lastmod>2023-02-01T22:24:19+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://tylerpalko.github.io/gamehub/basketrandom/</loc>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://tylerpalko.github.io/gamehub/boxingrandom/</loc>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tylerpalko.github.io/gamehub/chromedino/</loc>
-  <lastmod>2023-02-01T22:24:19+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tylerpalko.github.io/gamehub/cookieclicker/</loc>
-  <lastmod>2023-02-01T22:24:19+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tylerpalko.github.io/gamehub/flappybird/</loc>
-  <lastmod>2023-02-01T22:24:19+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tylerpalko.github.io/gamehub/hextris/</loc>
-  <lastmod>2023-02-01T22:24:19+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tylerpalko.github.io/gamehub/iceagebabyadventure/</loc>
-  <lastmod>2023-02-01T22:24:19+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tylerpalko.github.io/gamehub/ovo/</loc>
-  <lastmod>2023-02-01T22:24:19+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tylerpalko.github.io/gamehub/retrobowl/</loc>
-  <lastmod>2023-02-01T22:24:20+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tylerpalko.github.io/gamehub/slope/</loc>
-  <lastmod>2023-02-01T22:24:20+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tylerpalko.github.io/gamehub/spaceinvaders/</loc>
-  <lastmod>2023-02-01T22:24:20+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tylerpalko.github.io/gamehub/tetris/</loc>
-  <lastmod>2023-02-01T22:24:20+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:32+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tylerpalko.github.io/gamehub/thereisnogame/</loc>
-  <lastmod>2023-02-01T22:24:20+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:33+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tylerpalko.github.io/gamehub/tunnelrush/</loc>
-  <lastmod>2023-02-01T22:24:20+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:33+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://tylerpalko.github.io/gamehub/webretro/</loc>
-  <lastmod>2023-02-01T22:24:20+00:00</lastmod>
+  <lastmod>2023-02-11T00:34:33+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://tylerpalko.github.io/gamehub/worldshardesgame2/</loc>
+  <lastmod>2023-02-11T00:34:33+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://tylerpalko.github.io/gamehub/worldshardestgame/</loc>
+  <lastmod>2023-02-11T00:34:33+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
