@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tap Tap Shots</title>
+    <meta name="description" content="Tap Tap Shots is an attractive sports game. In this game, your task is to slam dunk as many balls into the basket as possible and not exceed the allotted time.">
+    <meta name="title" content="Tap Tap Shots">
+    <meta name="keywords" content="Tap Tap Shots">
+    <meta name="news_keywords" content="Tap Tap Shots">
+    <link rel="icon" href="/tap-tapshots/rs/logo-tap-tap-shots.png" />
+    <meta property="og:title" content="Tap Tap Shots" itemprop="headline" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" itemprop="url" content="https://sachiiang.github.com/tap-tapshots/" />
+    <meta property="og:image" itemprop="thumbnailUrl" content="/rs/banner-tap-tap-shots.png" />
+    <meta property="og:description" content="Tap Tap Shots is an attractive sports game. In this game, your task is to slam dunk as many balls into the basket as possible and not exceed the allotted time." itemprop="description" />
+    <meta property="og:site_name" content="Tap Tap Shots" />
+    <link rel="apple-touch-icon" href="/tap-tapshots/rs/logo-tap-tap-shots.png" />
+    <link rel="stylesheet" href="/tap-tapshots/themes/tap-tapshots.com/rs/css/home.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQZP4B3HYG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-PQZP4B3HYG');
+    </script>
+    <script data-ad-client="ca-pub-8691120312399474" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  </head>
+  <body>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+
+      body {
+        margin: 0;
+        background: #444;
+      }
+
+      #gameContainer {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      /* try to handle mobile dialog */
+      canvas+* {
+        z-index: 2;
+      }
+
+      .logo {
+        display: block;
+        max-width: 100vw;
+        max-height: 70vh;
+      }
+
+      .progress {
+        margin: 1.5em;
+        display: none;
+        position: relative;
+      }
+
+      .flexCenter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .progress .posfull,
+      .progress .posbox {
+        position: absolute;
+      }
+
+      .progress .posfull {
+        z-index: 3;
+      }
+
+      .posfull .full {
+        transform-origin: top left;
+      }
+
+      .progress .posfull1 {
+        z-index: 2;
+      }
+
+      .progress .posbox {
+        z-index: 1;
+      }
+
+      #loader {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+      }
+
+      .spinner,
+      .spinner:after {
+        border-radius: 50%;
+        width: 5em;
+        height: 5em;
+      }
+
+      .spinner {
+        margin: 10px;
+        font-size: 10px;
+        position: relative;
+        text-indent: -9999em;
+        border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+        border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+        border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+        border-left: 1.1em solid #ffffff;
+        transform: translateZ(0);
+        animation: spinner-spin 1.1s infinite linear;
+      }
+
+      @keyframes spinner-spin {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <style>
+      .btn-top-box {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 10;
+      }
+
+      .btn-top {
+        padding: 5px 15px;
+        height: 41px;
+        position: absolute;
+        top: 0;
+        left: calc(50% - 68px);
+        border-radius: 15px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        font-family: arial;
+        font-weight: 800;
+        background-color: #840151;
+        border: 3px solid #fe53bb;
+        border-top: none;
+        color: #f5d300;
+        box-shadow: 0 0 10px 0 #00d4ff;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .btn-top:hover {
+        background-color: #002a33;
+        border: 3px solid #00d4ff;
+        border-top: none;
+        color: #00d4ff;
+        box-shadow: 0 0 10px 0 #f5d300;
+      }
+    </style>
+    <div id="gameContainer"></div>
+    <div id="loader">
+      <img class="logo" src="loading.png?v=1">
+      <div class="spinner"></div>
+      <div class="progress">
+        <div class="flexCenter">
+          <div class="posfull">
+            <img alt="process_full" class="full" src="img/time line_1.png">
+          </div>
+          <div class="posfull1">
+            <img alt="process_full" class="" src="img/time line_2.png">
+          </div>
+          <div class="posbox">
+            <img alt="box_process" class="box_process" src="img/time line_3.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/TapTapShots.json", {
+        onProgress: UnityProgress
+      });
+
+      function UnityProgress(gameInstance, progress) {
+        if (!gameInstance.Module) {
+          return;
+        }
+        const loader = document.querySelector("#loader");
+        if (!gameInstance.progress) {
+          const progress = document.querySelector("#loader .progress");
+          progress.style.display = "block";
+          gameInstance.progress = progress.querySelector(".full");
+          loader.querySelector(".spinner").style.display = "none";
+        }
+        gameInstance.progress.style.transform = `scaleX(${progress})`;
+        if (progress === 1 && !gameInstance.removeTimeout) {
+          gameInstance.removeTimeout = setTimeout(function() {
+            loader.style.display = "none";
+          }, 2000);
+        }
+      }
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        let buttondiv = document.getElementsByTagName('button');
+        for (let i = 0; i < buttondiv.length; i++) {
+          if (buttondiv[i].innerHTML == "OK") {
+            buttondiv[i].click();
+          }
+        }
+        setTimeout(function() {
+          let buttonok = document.getElementsByTagName('button');
+          for (let i = 0; i < buttondiv.length; i++) {
+            if (buttonok[i].innerHTML == "OK") {
+              buttonok[i].click();
+            }
+          }
+        }, 1000);
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        let domain = window.location;
+        if (domain.ancestorOrigins.length !== 0) {
+          document.getElementById("btn_more").style.display = "block";
+        }
+      });
+    </script>
+    <script src="/tap-tapshots/themes/tap-tapshots.com/rs/js/jquery-3.4.1.min.js"></script>
+    <script>
+      function ToggleInfo() {
+        if ($('button.hide-main-panel').children('i')[0].textContent != 'Info') {
+          $("div.main-panel").css('width', '0px');
+          $("div.main-panel-ads").css('display', 'none');
+          $("div.main-panel-content").css('display', 'none');
+          $('button.hide-main-panel').children('i').html('Info');
+          console.log('Info');
+        } else {
+          $("div.main-panel").css('width', $("div.main-panel").css('max-width'));
+          $("div.main-panel-ads").css('display', 'block');
+          $("div.main-panel-content").css('display', 'block');
+          $('button.hide-main-panel').children('i').html('>>');
+          console.log('>>');
+        }
+      }
+      function ShowInfo() {
+        $("div.main-panel").css('width', $("div.main-panel").css('max-width'));
+        $("div.main-panel-ads").css('display', 'block');
+        $("div.main-panel-content").css('display', 'block');
+        $('button.hide-main-panel').children('i').html('>>');
+      }
+      function HideInfo() {
+        $("div.main-panel").css('width', '0px');
+        $("div.main-panel-ads").css('display', 'none');
+        $("div.main-panel-content").css('display', 'none');
+        $('button.hide-main-panel').children('i').html('Info');
+      };
+    </script>
+  </body>
+</html>
