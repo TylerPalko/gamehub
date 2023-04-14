@@ -22,7 +22,21 @@
     </head>
 
       <body>
-          <h1 position="fixed" align="center">Tyler's Game Hub</h1>
+        <h1 position="fixed" align="center">Tyler's Game Hub</h1>
+<!--Stolen code lol-->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(function(){
+    $('#button').click(function(){ 
+        if(!$('#iframe').length) {
+                $('#iframeHolder').html('<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc0gklArIPnPOVyGWhdJBb7N2WY31-XPRTPTt-pdcNR8KSGFw/viewform?embedded=true" width="800" height="551" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>');
+        }
+    });   
+  });
+  </script>
+<!--/Stolen code lol-->
+<button id="button">Game request</button>
+<div id="iframeHolder"></div>
         <br><br><br><br>
         <div>
           <a href="1">1</a>
