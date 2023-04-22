@@ -1888,7 +1888,7 @@ Game.Launch=function()
 		l('offGameMessage').innerHTML=
 		'<div class="title">Oops. Wrong address!</div>'+
 		'<div>It looks like you\'re accessing Cookie Clicker from another URL than the official one.<br>'+
-		'You can <a href="//orteil.dashnet.org/cookieclicker/" target="_blank">play Cookie Clicker over here</a>!<br>'+
+		'You can <a href="//tylerpalko.github.io/gamehub/cookieclicker/" target="_blank">play Cookie Clicker over here</a>!<br>'+
 		'<small>(This error also occurrs when using the bypass.)</small></div>';
 	}
 	Game.timedout=false;
