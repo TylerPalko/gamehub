@@ -1,6 +1,8 @@
-  html {
+ @import url('https://rsms.me/inter/inter.css');
+html {
   background-color: #202124;
   color: #ffffff;
+  font-family: Inter sans-serif;
   }
   .heading {
     text-align: center;
