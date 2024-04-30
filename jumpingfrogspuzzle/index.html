@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <title>Jumping Frogs Puzzle</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            @import url(https://fonts.googleapis.com/css?family=Josefin+Sans:700|Open+Sans:700,600,300,300italic);
+            html {
+            background-color: #202124;
+            color: #ffffff;
+                 }
+            body {
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 300;
+            }
+            strong {
+                font-weight:600;
+            }
+            h1, h2, h3 {
+                font-family: 'Josefin Sans', sans-serif;
+                font-weight: 400;
+            }
+            #container {
+                max-width:1000px;
+                margin: 0 auto;
+            }
+            p, ul {
+                font-size: 18px;
+            }
+            a:link {
+            color: #8ab4f8;
+             background-color: transparent;
+            text-decoration: none;
+                   }
+                   a:visited {
+            color: #c58af9;
+            background-color: transparent;
+            text-decoration: none;
+                             }
+            a:hover {
+            color: #c58af9;
+            background-color: transparent;
+            text-decoration: underline;
+                    }
+        </style>
+    </head>
+    <body>
+        <div id='container'>
+            <div id='puzzle'>
+                <h1>Jumping frogs puzzle</h1>
+                <svg id='svgpuzzle' viewBox='0 0 1000 200'>
+                    <defs>
+                        <g id='counterA'>
+                            <circle cx='50' cy='50'
+                                    r='45' fill='blue' />
+                        </g>
+                        <g id='counterB'>
+                            <circle cx='50' cy='50'
+                                    r='45' fill='red' />
+                        </g>
+                        <g id='frogA' fill='blue'>
+                            <ellipse cx='45' cy='50' rx='30' ry='45' />
+                            <circle cx='70' cy='25' r='15' />
+                            <circle cx='70' cy='25' r='12' fill='white' />
+                            <circle cx='70' cy='25' r='8' fill='black' />
+                            <circle cx='70' cy='75' r='15' />
+                            <circle cx='70' cy='75' r='12' fill='white' />
+                            <circle cx='70' cy='75' r='8' fill='black' />
+                        </g>
+                        <g id='frogB' fill='green'>
+                            <ellipse cx='55' cy='50' rx='30' ry='45' />
+                            <circle cx='30' cy='25' r='15' />
+                            <circle cx='30' cy='25' r='12' fill='white' />
+                            <circle cx='30' cy='25' r='8' fill='black' />
+                            <circle cx='30' cy='75' r='15' />
+                            <circle cx='30' cy='75' r='12' fill='white' />
+                            <circle cx='30' cy='75' r='8' fill='black' />
+                        </g>
+                        <g id='hiconB'>
+                            <circle cx='50' cy='50'
+                                    r='45' fill='yellow' stroke='black' />
+                        </g>
+                        <g id='hiconA'>
+                            <circle cx='50' cy='50'
+                                    r='45' fill='black' />
+                        </g>
+                    </defs>
+                    <g id='grid' stroke='black' fill='white' stroke-width='3'></g>
+                    <g id='counters'></g>
+                </svg>
+                <h2 id='message'>&nbsp;</h2>
+                <p>Moves: <span id='count'></span></p>           
+                <button id='reset'>Reset</button>
+                <p>
+                    <button id='down'>-</button>
+                    <span id='numcounters' style='display:inline-block; width:3em; text-align:center;'>3</span>
+                    <button id='up'>+</button>
+                </p>
+                <p>
+                    Counters: 
+                    <select id='counterdropdown'>
+                        <option value='#counter'>circles</option>
+                        <option value='#frog'>frogs</option>
+                        <option value='#hicon'>high contrast</option>
+                    </select>
+                </p>
+                <h2>Rules:</h2>
+                <ul>
+                    <li>The left set of counters can only move right, the right set of counters
+                        can only move left.</li>
+                    <li>Counters can move forward one space, or move two spaces by jumping over
+                        another counter.</li>
+                    <li>The puzzle is solved when the two sets of counters have switched positions.</li>
+                </ul>
+            </div>
+            <div>
+                
+                <p><a href="https://primefactorisation.com/blog/2016/04/14/interactive-jumping-puzzle/">Further information about this puzzle</a></p>
+                <p>
+                    Created by Shaun Carter &copy; 2016.<br/>
+                    <a href='https://primefactorisation.com/'> The Prime Factorisation of Me</a>
+                </p>
+            </div>
+        </div>
+        <script src='frogpuzzle.js'></script>
+    </body>
+</html>
