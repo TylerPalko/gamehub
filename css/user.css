@@ -1,0 +1,174 @@
+.user-avatar img {
+	width: 40px;
+}
+.user-avatar {
+	border-radius: 50%;
+	overflow: hidden;
+	cursor: pointer;
+}
+ul.user-links {
+    position: absolute;
+    background: #fff;
+    right: 0;
+    top: 100%;
+    z-index: 2;
+    text-align: left;
+    list-style: none;
+    font-weight: normal;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: .25rem;
+    padding-left: 0;
+    box-shadow: 0 4px 12px 0 rgba(43, 43, 43, 0.1);
+}
+ul.user-links li {
+    padding: 1rem;
+    min-width: 220px;
+    color: #2c3e50;
+}
+ul.user-links.hidden {
+	display: none;
+}
+.user-links hr {
+	margin: 0;
+}
+#mainNav .container {
+	position: relative;
+	padding: 0 10px;
+}
+.section {
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 15px;
+	margin-bottom: 30px;
+	box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.05);
+}
+.section-title {
+	font-size: 1.3rem;
+}
+.page-title {
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+.profile-username {
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 20px;
+}
+.user-page {
+	background-color: #f6f8fb;
+}
+.user-page .single-title {
+	margin-top: 0;
+	margin-bottom: 10px;
+	padding-top: 25px;
+	font-size: 1.5rem;
+}
+.user-page .section-title {
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+.profile-bio {
+	margin-top: 10px;
+}
+.profile-join {
+	color: #d6793a;
+	font-style: italic;
+}
+.progress-bar {
+	background-color: #19bae0;
+}
+.level-badge {
+	float: left;
+	margin-right: 10px;
+}
+.profile-game-item {
+	max-width: 80px;
+	border-radius: 10px;
+	overflow: hidden;
+	margin-right: 15px;
+}
+.profile-gamelist-horizontal {
+	position: relative;
+}
+.profile-gamelist-horizontal ul {
+	overflow: hidden;
+	white-space: nowrap;
+	display: block;
+	list-style: none;
+	padding: 0;
+	margin-bottom: 0;
+}
+
+.profile-gamelist-horizontal li {
+	display: inline-block;
+	text-align: center;
+}
+
+.profile-comment-item {
+	position: relative;
+	border: 1px solid #dcdfe3;
+	padding: 15px;
+	border-radius: 10px;
+	margin-top: 20px;
+}
+
+.comment-date {
+	font-style: italic;
+}
+
+.btn-left {
+	position: absolute;
+	left: 0;
+	background-color: #fff;
+	border-radius: 50%;
+	top: 14px;
+	margin: 5px;
+	box-shadow: 0 0 5px 0 rgba(0,0,0,0.3);
+	z-index: 1;
+}
+.btn-right {
+	position: absolute;
+	right: 0;
+	background-color: #fff;
+	border-radius: 50%;
+	top: 14px;
+	margin: 5px;
+	box-shadow: 0 0 5px 0 rgba(0,0,0,0.3);
+	z-index: 1;
+}
+.label-xp {
+	color: #d6793a;
+	font-style: italic;
+}
+.delete-comment {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	cursor: pointer;
+}
+.input-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+input[type=radio]:checked + label>img {
+  border: 1px solid #fff;
+  box-shadow: 0 0 0 3px #14ca14;
+}
+
+.avatar-chooser .col-3 {
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+.avatar-chooser {
+	margin-right: 0;
+	margin-left: 0;
+}
+
+@media (min-width: 768px) {
+	.user-avatar {
+		margin-left: 20px;
+	}
+}
