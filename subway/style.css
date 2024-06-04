@@ -1,0 +1,109 @@
+#glcanvas {
+  padding: 0;
+  margin: auto;
+  display: flex;
+  width: 1024px;
+  height: 800px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.score {
+  padding: 0;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 75%;
+  left: 0;
+  right: 1%;
+  display: none;
+  z-index: 1;
+  width: 12%;
+  height: 31%;
+}
+
+.score_box {
+  width: 115px;
+  height: 35px;
+  background: white;
+  text-align: center;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+
+.score_content {
+  position: relative;
+  margin: auto;
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  margin: auto;
+  padding: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  width: 19%;
+  height: 25%;
+  background-color: white;
+  opacity: 0.6;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.8s;
+  animation-name: animatetop;
+  animation-duration: 0.8s
+}
+
+.modal-header {
+  padding: 0px 16px;
+  text-align: center;
+}
+
+.modal-header p {
+  font-weight: bold;
+  color: black;
+  font-size: 32px;
+}
+
+.modal-footer {
+  border-top: 25px solid transparent;
+  border-left: 50px solid black;
+  border-bottom: 25px solid transparent;
+  margin-left: 42%;
+}
+
+@keyframes animatetop {
+  from {
+    top: -500px;
+    opacity: 0
+  }
+  to {
+    top: 0;
+    opacity: 0.6
+  }
+}
+
+@-webkit-keyframes animatetop {
+  from {
+    top: -500px;
+    opacity: 0
+  }
+  to {
+    top: 0;
+    opacity: 1
+  }
+}
