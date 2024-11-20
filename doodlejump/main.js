@@ -246,10 +246,10 @@ function init() {
     document.onkeydown = function(e) {
       var key = e.keyCode;
       
-      if (key == 37) {
+      if (key == 37 || key == 65) {
         dir = "left";
         player.isMovingLeft = true;
-      } else if (key == 39) {
+      } else if (key == 39 || key == 68) {
         dir = "right";
         player.isMovingRight = true;
       }
@@ -265,10 +265,10 @@ function init() {
     document.onkeyup = function(e) {
       var key = e.keyCode;
     
-      if (key == 37) {
+      if (key == 37 || key == 65) {
         dir = "left";
         player.isMovingLeft = false;
-      } else if (key == 39) {
+      } else if (key == 39 || key == 68) {
         dir = "right";
         player.isMovingRight = false;
       }
@@ -560,10 +560,10 @@ function playerJump() {
   document.onkeydown = function(e) {
     var key = e.keyCode;
 
-    if (key == 37) {
+    if (key == 37 || key == 65) {
       dir = "left";
       player.isMovingLeft = true;
-    } else if (key == 39) {
+    } else if (key == 39 || key == 68) {
       dir = "right";
       player.isMovingRight = true;
     }
@@ -581,10 +581,10 @@ function playerJump() {
   document.onkeyup = function(e) {
     var key = e.keyCode;
 
-    if (key == 37) {
+    if (key == 37 || key == 65) {
       dir = "left";
       player.isMovingLeft = false;
-    } else if (key == 39) {
+    } else if (key == 39 || key == 68) {
       dir = "right";
       player.isMovingRight = false;
     }
